@@ -9,7 +9,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
+  min-height: 100vh;
 }
 .card-container {
   display: flex;
@@ -18,8 +18,17 @@ body {
   align-items: center;
   background: linear-gradient(90deg, hsl(200, 50%, 50%), hsl(120, 60%, 50%));
   box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.3);
-  padding: 2rem;
+  padding: 1rem;
+  border-radius: 15px;
   margin-top: 2rem;
+  width: 90%;
+  max-width: 450px;
+}
+.card {
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 h1 {
   font-family: inherit;
@@ -29,7 +38,7 @@ h1 {
 img {
   width: 250px;
   height: 250px;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 50%;
   border: 1.5px solid black;
   margin-bottom: 1rem;
@@ -40,7 +49,7 @@ h2 {
   margin-bottom: 1rem;
 }
 p {
-  font-family: 1rem;
+  font-size: 1rem;
   margin-bottom: 1rem;
   font-weight: bold;
 }
@@ -51,4 +60,11 @@ button {
   font-size: 1rem;
   text-transform: capitalize;
   font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.03);
 }

@@ -4,14 +4,57 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Random User Generator</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <h1 class="heading">Random User Generator</h1>
-    <div class="card">
-      <img src="" alt="random user" />
-      <h2>Name: Puneet</h2>
-      <p>Email: puneet@abc.com</p>
+    <div class="card-container">
+      <h1 class="heading">Random User Generator</h1>
+      <div class="card"></div>
+      <button type="submit" class="submitBtn">generate</button>
     </div>
-    <button type="submit" class="submitBtn">generate</button>
+
+    <script>
+      const card = document.querySelector(".card");
+      const generate = document.querySelector(".submitBtn");
+
+      async function generateUser() {
+        try {
+          card.innerHTML = "<p>Loading...</p>";
+
+          const response = await fetch("https://randomuser.me/api/");
+
+          if (!response.ok) {
+            throw new Error("User not found");
+          }
+
+          const data = await response.json();
+
+          const user = data.results[0];
+
+          card.innerHTML = `
+        <img src="${user.picture.large}" alt="User">
+
+    <h2>${user.name.first} ${user.name.last}</h2>
+
+    <p>Email: ${user.email}</p>
+
+    <p>Phone: ${user.phone}</p>
+
+    <p>Country: ${user.location.country}</p>
+
+    <p>Age: ${user.dob.age}</p>
+    `;
+        } catch (error) {
+          console.error(error);
+          card.innerHTML = `
+      <p>Something went wrong</p>
+    `;
+        }
+      }
+
+      generate.addEventListener("click", generateUser);
+
+      generateUser();
+    </script>
   </body>
 </html>
